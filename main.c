@@ -9,24 +9,39 @@
 
 int get_number_input() {
     int input;
-    printf("Enter your guessing number\n");
     scanf("%d", &input);
     return input;
 }
 
 
 int main() {
-    // get input number
-    int guessing = get_number_input();
-
-    printf("\nyour try is: %d", guessing);
-    
     // generate random number
     long int seed = time(NULL) % clock();
     
     srand(seed);
     
-    int secret_number = rand_num(70, 100);
+    int secret_number = rand_num(0, 100);
 
-    printf("\nThe secret: %d", secret_number);
+    // TODO: enter the number of attempts
+
+
+    // start game
+    printf("Enter your guessing number\n");
+
+    while (1)
+    {
+        int guess = get_number_input();
+
+        if (guess == secret_number) {
+            printf("You guessed!\n");
+            break;
+        } else if (guess > secret_number) {
+            printf("Too big!\n");
+        } else if (guess < secret_number) {
+            printf("Too small!\n");
+        }
+        else {
+            printf("try again: ");
+        }
+    }
 }
